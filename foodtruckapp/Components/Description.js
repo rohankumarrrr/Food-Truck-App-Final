@@ -217,7 +217,6 @@ export default function Description({ navigation, route }) {
     QuickSandBold: require("../assets/fonts/Quicksand-Bold.ttf"),
     QuickSandMedium: require("../assets/fonts/Quicksand-Medium.ttf"),
     QuickSandSemiBold: require("../assets/fonts/Quicksand-SemiBold.ttf"),
-    PlayfairDisplay: require("../assets/fonts/PlayfairDisplay-VariableFont_wght.ttf"),
     UberMove: require("../assets/fonts/UberMoveMedium.otf"),
     UberMoveBold: require("../assets/fonts/UberMoveBold.otf"),
   });

@@ -3,7 +3,7 @@ import ListScreen from './Components/ListScreen';
 import MapScreen from './Components/MapScreen';
 import Description from './Components/Description';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
@@ -13,6 +13,7 @@ SplashScreen.preventAutoHideAsync();
 setTimeout(SplashScreen.hideAsync, 5000);
 
 function App() {
+
   return (
     <NavigationContainer>
       <Stack.Navigator
