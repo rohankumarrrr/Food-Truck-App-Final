@@ -10,7 +10,7 @@ const foodTruckAttributeMap = () => {
         ],
         ["TBell", 
         {
-            image: require("../assets/Food_trucks_Pitt_09.jpg"),
+            image: require("../assets/JG.png"),
             cuisineType: "Mexican Fast Food",
             description: "Taco Bell Food Truck Description",
             websiteURL: "https://www.tacobell.com/",
@@ -18,7 +18,7 @@ const foodTruckAttributeMap = () => {
         ],
         ["Dons", 
         {
-            image: require("../assets/Food_trucks_Pitt_09.jpg"),
+            image: require("../assets/JG.png"),
             cuisineType: "American Fast Food",
             description: "McDonald's Food Truck Description",
             websiteURL: "https://www.mcdonalds.com/us/en-us.html",

@@ -1,155 +1,17 @@
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import * as React from 'react';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
-import Nav from './Nav';
 import Header from './Header';
 import { db } from './Config';
 import { ref, get, child } from 'firebase/database';
 import { Ionicons } from '@expo/vector-icons';
-
+import { mapStyle } from './Constants';
 import Geocoder from 'react-native-geocoding';
 
 export default function MapScreen({ navigation }) {  
 
     const [screenJustFocused, setScreenJustFocused] = React.useState(true);
     const GEOCODER_API_KEY = "AIzaSyBzBg_8V451VUSWuujZtTcn03gHJBok97A"
-    const mapStyle = [
-      {
-          "featureType": "all",
-          "elementType": "geometry",
-          "stylers": [
-              {
-                  "color": "#202c3e"
-              }
-          ]
-      },
-      {
-          "featureType": "all",
-          "elementType": "labels.text.fill",
-          "stylers": [
-              {
-                  "gamma": 0.01
-              },
-              {
-                  "lightness": 20
-              },
-              {
-                  "weight": "1.39"
-              },
-              {
-                  "color": "#ffffff"
-              }
-          ]
-      },
-      {
-          "featureType": "all",
-          "elementType": "labels.text.stroke",
-          "stylers": [
-              {
-                  "weight": "0.96"
-              },
-              {
-                  "saturation": "9"
-              },
-              {
-                  "visibility": "on"
-              },
-              {
-                  "color": "#000000"
-              }
-          ]
-      },
-      {
-          "featureType": "all",
-          "elementType": "labels.icon",
-          "stylers": [
-              {
-                  "visibility": "off"
-              }
-          ]
-      },
-      {
-          "featureType": "landscape",
-          "elementType": "geometry",
-          "stylers": [
-              {
-                  "lightness": 30
-              },
-              {
-                  "saturation": "9"
-              },
-              {
-                  "color": "#29446b"
-              }
-          ]
-      },
-      {
-          "featureType": "poi",
-          "elementType": "geometry",
-          "stylers": [
-              {
-                  "saturation": 20
-              }
-          ]
-      },
-      {
-          "featureType": "poi.park",
-          "elementType": "geometry",
-          "stylers": [
-              {
-                  "lightness": 20
-              },
-              {
-                  "saturation": -20
-              }
-          ]
-      },
-      {
-          "featureType": "road",
-          "elementType": "geometry",
-          "stylers": [
-              {
-                  "lightness": 10
-              },
-              {
-                  "saturation": -30
-              }
-          ]
-      },
-      {
-          "featureType": "road",
-          "elementType": "geometry.fill",
-          "stylers": [
-              {
-                  "color": "#193a55"
-              }
-          ]
-      },
-      {
-          "featureType": "road",
-          "elementType": "geometry.stroke",
-          "stylers": [
-              {
-                  "saturation": 25
-              },
-              {
-                  "lightness": 25
-              },
-              {
-                  "weight": "0.01"
-              }
-          ]
-      },
-      {
-          "featureType": "water",
-          "elementType": "all",
-          "stylers": [
-              {
-                  "lightness": -20
-              }
-          ]
-      }
-  ];
 
     const [truckData, setTruckData] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
@@ -248,13 +110,14 @@ export default function MapScreen({ navigation }) {
         );
       }
     }
-
+    
+    const customMap = mapStyle();
     const [currentUserLocation, setCurrentUserLocation] = React.useState();
     return (
     <View style={styles.container}>
         <MapView 
             style={styles.map}
-            customMapStyle={mapStyle}
+            customMapStyle={customMap}
             provider={PROVIDER_GOOGLE}
             showsUserLocation={true}
             pitchEnabled={true}

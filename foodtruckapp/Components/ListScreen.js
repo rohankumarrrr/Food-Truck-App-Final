@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Text, StyleSheet, FlatList, View, TouchableOpacity, Image, TextInput, SafeAreaView, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import Nav from './Nav';
 import Header from './Header';
 import { useFonts } from 'expo-font';
 import { db } from './Config';
@@ -17,7 +16,6 @@ export default function ListScreen({ navigation, route }) {
   const [sortOption, setSortOption] = React.useState("name");
 
   React.useEffect(() => {
-    console.log(route.params.currentUserLocation);
     const unsubscribe = navigation.addListener('focus', () => {
       // The screen is focused
       // Call any action
@@ -61,9 +59,9 @@ export default function ListScreen({ navigation, route }) {
   }, [navigation]);
 
   const truckToImageMap = new Map([
-    ["Sample", require('../assets/Food_trucks_Pitt_09.jpg')],
+    ["Sample", require("../assets/JG.png")],
     ["JGrill", require('../assets/JG.png')],
-    ["a", require('../assets/MCD.png')]
+    ["a", require("../assets/JG.png")]
   ])
 
   function Item({ item }) {
@@ -138,7 +136,6 @@ export default function ListScreen({ navigation, route }) {
     QuickSandBold: require('../assets/fonts/Quicksand-Bold.ttf'),
     QuickSandMedium: require('../assets/fonts/Quicksand-Medium.ttf'),
     QuickSandSemiBold: require('../assets/fonts/Quicksand-SemiBold.ttf'),
-    PlayfairDisplay: require("../assets/fonts/PlayfairDisplay-VariableFont_wght.ttf"),
   });
   if(!loaded) {
     return null;
@@ -162,24 +159,26 @@ export default function ListScreen({ navigation, route }) {
           <MaterialIcons name="close" size={32} color="#000" />
         </TouchableOpacity>
       </View>
-      <ScrollView horizontal={true} contentContainerStyle={styles.sortScrollView} style={{height:'5%'}}> 
+      <View style={{height: '4%', flexDirection: 'row', alignItems: 'center'}}>
         <Text style={styles.sortText}>Sort by:</Text>
-        <TouchableOpacity style={[styles.sortButton, {backgroundColor: 
-        (sortOption == "name" ? "gold" : "white")}]}
-                          onPress={() => {sort("name")}}>
-          <Text style={styles.sortOptionsText}>Name</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.sortButton, {backgroundColor: 
-        (sortOption == "proximity" ? "gold" : "white")}]}
-                                onPress={() => {sort("proximity")}}>
-          <Text style={styles.sortOptionsText}>Proximity</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.sortButton, {backgroundColor: 
-        (sortOption == "closingTime" ? "gold" : "white")}]}
-                                onPress={() => {sort("closingTime")}}>
-          <Text style={styles.sortOptionsText}>Closing Time</Text>
-        </TouchableOpacity>
-      </ScrollView>
+        <ScrollView horizontal={true} contentContainerStyle={styles.sortScrollView} style={{marginLeft: '2.5%', height: '100%'}}> 
+          <TouchableOpacity style={[styles.sortButton, {backgroundColor: 
+          (sortOption == "name" ? "gold" : "white")}]}
+                            onPress={() => {sort("name")}}>
+            <Text style={styles.sortOptionsText}>Name</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.sortButton, {backgroundColor: 
+          (sortOption == "proximity" ? "gold" : "white")}]}
+                                  onPress={() => {sort("proximity")}}>
+            <Text style={styles.sortOptionsText}>Proximity</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.sortButton, {backgroundColor: 
+          (sortOption == "closingTime" ? "gold" : "white")}]}
+                                  onPress={() => {sort("closingTime")}}>
+            <Text style={styles.sortOptionsText}>Closing Time</Text>
+          </TouchableOpacity>
+        </ScrollView>
+      </View>
       <FlatList style={{marginTop:'2%'}}
         data={truckData.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))}
         renderItem={renderItem}
@@ -276,29 +275,28 @@ const styles = StyleSheet.create({
   sortScrollView: {
     alignItems: 'center',
     alignSelf: 'center',
-    justifyContent: 'space-around',
-    width:'115%',
+    justifyContent: 'space-evenly',
+    width:'100%',
     height:'100%',
   },
   sortText: {
     fontFamily: 'QuickSandSemiBold',
-    color: 'white'
+    color: 'white',
+    marginLeft: '2.5%'
   }, 
   sortButton: {
     height: '100%',
     backgroundColor: 'white',
     borderBottomColor: 'black',
     borderRadius: 55,
-    width: '25%',
+    width: '30%',
     alignItems: 'center',
+    justifyContent: 'center'
   },
   sortOptionsText: {
     width: '100%',
     textAlign: 'center',
     fontSize: 13,
     fontFamily: 'QuickSandMedium',
-    top: '15%', 
   }
 });
-
-// Remove Header and Changed to SafeAreaView//
