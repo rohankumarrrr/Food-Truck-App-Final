@@ -43,48 +43,30 @@ const styles = StyleSheet.create({
         height: '12%',
         bottom: '88%'
     },
-    headerTitle: {
-        fontSize: 24,
-        fontFamily: "UberMoveBold",
-        fontWeight: 'bold',
-        color: 'white',
-        width: '65%',
-        textAlign: 'center',
-        height: '100%',
-        top: '5%',
-    },
     buttonText: {
         fontFamily: 'UberMove',
         color: 'white',
         fontSize: 24,
     },
-    refreshButton: {
-        color: '#BB86FC',
-        width: '7%',
-        justifyContent: 'center',
-        alignSelf: 'center',
-        top: '3.5%',
-        left: '20%'
-    },
     navButton: {
         color: '#BB86FC',
         width: '50%',
         justifyContent: 'center',
-        alignSelf: 'center',
+        alignItems: 'center',
         flexDirection: 'row',
         borderBottomWidth: 3,
         height: '100%',
-        paddingTop: '15%'
+        paddingTop: '12%',
     },
     mapIcon: {
         resizeMode: 'contain',
         width: '30%',
-        bottom: '85%'
+        height: '100%',
     },
     browseIcon: {
         resizeMode: 'contain',
-        width: '30%',
-        bottom: '111%'
+        width: '35%',
+        height: '150%',
     },
 });
 

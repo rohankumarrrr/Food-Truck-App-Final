@@ -130,7 +130,7 @@ export default function MapScreen({ navigation }) {
            {mapMarkers()}
         </MapView>
         <Header currentScreen="MapScreen"         
-          handleNav={() => {navigation.navigate('ListScreen', {currentUserLocation: currentUserLocation})}}
+          handleNav={() => {navigation.navigate('ListScreen', {currentUserLocation: currentUserLocation, sortOption: "name"})}}
         />
         <TouchableOpacity
           style={styles.locationFocus}
@@ -162,18 +162,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
   },
-  descriptionButton: {
-    position: 'absolute',
-    bottom: 50,
-    alignSelf: 'center',
-    backgroundColor: 'blue',
-    padding: 10,
-    borderRadius: 5,
-},
-descriptionButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
-},
 locationFocus: {
   backgroundColor: '#d4d4d4',
   alignItems: 'center',
@@ -187,7 +175,7 @@ locationFocus: {
   borderColor: 'white',
   position: 'absolute',
   alignSelf: 'flex-end',
-  right: '3%',
-  opacity: 0.8
+  opacity: 0.8,
+  right: '2%'
 },
 });
