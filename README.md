@@ -2,12 +2,12 @@
 
 ## Changes 
 
-### BEFORE PUBLISHING
-* Food Truck Attribute Map: fill out data for known food trucks
-* Web App: preload data with known food trucks
-
-### AFTER PUBLISHING
-* Analytics
-* Refactor Code (Remove unused code, organize, etc.)
-* Add more info to the "description" tab so it looks empty
-* Optimization (app is very laggy as of right now)
+### TO-DO
+* Request Permission to use Location (due 3/12)
+* Consistent CSS across device sizes (due 3/12)
+* Fix Sorting reset (due 3/13)
+* Name + SplashScreen (due 3/14)
+* Unique Food Truck Markers (due 3/18)
+* Menu Images (due 3/18)
+* Basic notification system + request permissions (**After Apple Developer Account; due 3/31?)
+* Refactor code to good coding practices (due 3/31)
