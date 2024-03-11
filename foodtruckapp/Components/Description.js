@@ -23,6 +23,7 @@ const windowWidth = Dimensions.get("window").width;
 const isTablet = windowWidth > 768;
 
 export default function Description({ navigation, route }) {
+  const sortOption = route.params.sortOption;
   const startTime = getTime(route.params.truck.startTime) + " to ";
   const endTime = getTime(route.params.truck.endTime);
   const foodtruckname = route.params.truck.name;
@@ -225,7 +226,7 @@ export default function Description({ navigation, route }) {
   }
 
   const FirstRoute = () => (
-    <View style={{ flex: 1, backgroundColor: "#000" }}>
+    <View style={{ flex: 1, backgroundColor: "#000", flexDirection: 'column', justifyContent: 'flex-start'}}>
       <View style={styles.aboutUsContainer}>
         <Text style={styles.aboutUsHeader}>About Us</Text>
         
@@ -234,22 +235,30 @@ export default function Description({ navigation, route }) {
 
       <View style={styles.contactContainer}>
         <Text style={styles.contactHeader}>Contact</Text>
-        <FontAwesome style={styles.house} name="home" size={20} color="white" />
-        <TouchableOpacity
-          onPress={() => {
-            openDirections();
-          }}
-        >
-          <Text style={styles.locationOfTruck}>
-            {route.params.truck.location}
-          </Text>
-        </TouchableOpacity>
-        <FontAwesome
-          style={styles.globe}
-          name="globe"
-          size={20}
-          color="white"
-        />
+        <View  style={{flexDirection: 'row', height: '17.5%'}}>
+          <View style={{width: '7.5%', justifyContent: 'center'}}>
+          <FontAwesome style={styles.house} name="home" size={20} color="white"/>
+          </View>
+          <TouchableOpacity
+            onPress={() => {
+              openDirections();
+            }}
+            style={{width: '92.5%', justifyContent: 'center'}}
+          >
+            <Text style={styles.locationOfTruck}>
+              {route.params.truck.location}
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View  style={{flexDirection: 'row', height: '17.5%'}}>
+        <View style={{width: '7.5%', justifyContent: 'center'}}>
+          <FontAwesome
+            style={styles.globe}
+            name="globe"
+            size={20}
+            color="white"
+          />
+        </View>
         <TouchableOpacity
           onPress={async () => {
             const supported = await Linking.canOpenURL(websiteurl);
@@ -259,9 +268,11 @@ export default function Description({ navigation, route }) {
               console.log("Don't know how to open this URL: " + websiteurl);
             }
           }}
+          style={{width: '92.5%', justifyContent: 'center'}}
         >
           <Text style={styles.websiteLink}>Website</Text>
         </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -306,7 +317,9 @@ export default function Description({ navigation, route }) {
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
-          onPress={() => navigation.goBack()}
+          onPress={() => {        
+            navigation.goBack();
+        }}
         >
           <Icon name="arrowleft" size={45} color="white" />
         </TouchableOpacity>
@@ -344,7 +357,7 @@ const styles = StyleSheet.create({
   },
   header: {
     justifyContent: "flex-end",
-    alignItems: "center",
+    alignItems: "flex-start",
     height: "10%",
   },
   imageContainer: {},
@@ -383,9 +396,8 @@ const styles = StyleSheet.create({
     width: "50%",
     height: "50%",
     borderRadius: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    right: isTablet ? 540 : 160, // Adjust positioning for tablets
+    alignItems: "flex-start",
+    marginLeft: '5%'
   },
   foodTruckName: {
     fontSize: 40,
@@ -420,20 +432,17 @@ const styles = StyleSheet.create({
     flex: 1, // Fixed height to match the image
     overflow: "hidden",
     postion: "relative",
-    // marginTop: 10,
-    // bottom: '56%',
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 5,
   },
   aboutUsContainer: {
-    bottom: "10%",
     marginLeft: "4%",
     marginRight: "4%",
   },
   aboutUsHeader: {
-    marginTop: "25%",
+    marginTop: '5%',
     fontSize: 24,
     fontFamily: "QuickSandMedium",
     color: "white",
@@ -444,15 +453,14 @@ const styles = StyleSheet.create({
     color: "white",
   },
   contactContainer: {
-    bottom: "7.5%",
     marginLeft: "4%",
+    marginTop: '5%'
   },
   contactHeader: {
     fontSize: 24,
     fontFamily: "QuickSandMedium",
     color: "white",
     position: "relative",
-    top: "0%",
   },
   websiteLink: {
     fontSize: 16,
@@ -461,8 +469,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     color: "white",
     textDecorationLine: "underline",
-    bottom: "100%",
-    left: "10%",
     position: "relative",
   },
   locationOfTruck: {
@@ -471,47 +477,6 @@ const styles = StyleSheet.create({
     color: "white",
     textDecorationLine: "underline",
     position: "relative",
-    bottom: "20%",
-    left: "10%",
     width: "80%",
   },
-  house: {
-    top: "10%",
-  },
-  globe: {
-    position: "relative",
-    bottom: "1%",
-  },
-  // aboutus: {
-  //   flex: 1.6,
-  //   backgroundColor: 'white', // White background
-  //   // borderRadius: 20, // Rounded corners
-  //   padding: 10, // Padding for content inside
-  //   margin: 15, // Margin from the edges of the screen
-  //   postion: 'relative',
-  //   bottom: '3%',
-  //   shadowColor: "#000",
-  //   shadowOffset: { width: 0, height: 2 },
-  //   shadowOpacity: 0.25,
-  //   shadowRadius: 3.84,
-
-  // },
-  // timeAndTypeContainer: {
-  //   backgroundColor: 'white',
-  //   borderRadius: 20,
-  //   padding: 10,
-  //   margin: 15,
-  //   postion: 'relative',
-  //   width: '45%',
-  //   height: '14%',
-  //   top: '4%',
-  //   flexDirection: 'column',
-  //   flexDirection: 'column',
-  //   shadowColor: "#000",
-  //   shadowOffset: { width: 0, height: 2 },
-  //   shadowOpacity: 0.25,
-  //   shadowRadius: 3.84,
-  // },
 });
-
-// Header Temporary Removed//

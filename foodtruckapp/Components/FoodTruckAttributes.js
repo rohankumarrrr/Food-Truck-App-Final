@@ -24,6 +24,14 @@ const foodTruckAttributeMap = () => {
             websiteURL: "https://www.mcdonalds.com/us/en-us.html",
         }
         ],
+        ["Fernando's", 
+        {
+            image: require("../assets/FernandosLogo.jpeg"),
+            cuisineType: "Mexican Cuisine",
+            description: "Come find us for fresh tacos, burritos, quesadillas, and nachos! All you need is love and Fernando's tacos.",
+            websiteURL: "https://www.facebook.com/FernandosTacosAndMore/"
+        }
+        ]
     ])
 }
 

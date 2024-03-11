@@ -13,7 +13,7 @@ export default function ListScreen({ navigation, route }) {
 
   const [truckData, setTruckData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
-  const [sortOption, setSortOption] = React.useState("name");
+  const [sortOption, setSortOption] = React.useState();
 
   React.useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -51,7 +51,7 @@ export default function ListScreen({ navigation, route }) {
         });
         sort("name");
         setLoading(false);
-      }, 1000);     
+      }, 1000);   
     });
 
     // Return the function to unsubscribe from the event so it gets removed on unmount
@@ -61,7 +61,8 @@ export default function ListScreen({ navigation, route }) {
   const truckToImageMap = new Map([
     ["Sample", require("../assets/JG.png")],
     ["JGrill", require('../assets/JG.png')],
-    ["a", require("../assets/JG.png")]
+    ["a", require("../assets/JG.png")],
+    ["Fernando's", require("../assets/FernandosLogo.jpeg")]
   ])
 
   function Item({ item }) {
@@ -85,7 +86,7 @@ export default function ListScreen({ navigation, route }) {
     }
 
     return (
-      <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Description', {truck: item})}>
+      <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Description', {truck: item, sortOption: sortOption})}>
         {truckToImageMap.get(item.name) && <Image source={truckToImageMap.get(item.name)} style={styles.image} />}
         <View style={styles.itemContent}>
           <Text style={styles.itemText}>{item.name}</Text>
@@ -122,7 +123,7 @@ export default function ListScreen({ navigation, route }) {
         break;
       case "closingTime":
         const newTemp = truckData;
-        newTemp.sort((a, b) => {return new Date(b.endTime) - new Date(a.endTime)});
+        newTemp.sort((a, b) => {return new Date(a.endTime) - new Date(b.endTime)});
         setTruckData(newTemp);
         break;
     }

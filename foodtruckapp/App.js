@@ -4,6 +4,7 @@ import MapScreen from './Components/MapScreen';
 import Description from './Components/Description';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import * as Location from 'expo-location';
 
 const Stack = createStackNavigator();
 
@@ -13,6 +14,18 @@ SplashScreen.preventAutoHideAsync();
 setTimeout(SplashScreen.hideAsync, 5000);
 
 function App() {
+
+  React.useEffect(() => {
+    (async () => {
+      
+      let { foregroundStatus } = await Location.requestForegroundPermissionsAsync();
+      let { backgroundStatus } = await Location.requestBackgroundPermissionsAsync();
+      if (foregroundStatus !== 'granted' || backgroundStatus !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+    })();
+  }, []);
 
   return (
     <NavigationContainer>
