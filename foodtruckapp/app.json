@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "foodtruckapp",
+    "name": "StreetBytes",
     "slug": "foodtruckapp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/trucksplash.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/trucksplash.png",
@@ -15,16 +15,30 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.rohankumarr.foodtruckapp",
+      "runtimeVersion": "1.0.0",
+      "buildNumber": "2"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "runtimeVersion": {
+        "policy": "appVersion"
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "22646095-c98b-48aa-88f6-3217e0c47444"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/22646095-c98b-48aa-88f6-3217e0c47444"
     }
   }
 }
