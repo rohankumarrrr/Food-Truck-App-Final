@@ -4,10 +4,10 @@
     "slug": "foodtruckapp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/trucksplash.png",
+    "icon": "./assets/StreetBytesLogo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/trucksplash.png",
+      "image": "./assets/StreetBytesLogo.png",
       "resizeMode": "contain",
       "backgroundColor": "#161629"
     },
