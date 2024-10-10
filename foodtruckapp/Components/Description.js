@@ -282,7 +282,7 @@ export default function Description({ navigation, route }) {
       <View style={styles.map}>
         <MapView
           style={styles.mapStyle}
-          provider={PROVIDER_GOOGLE}
+          // provider={PROVIDER_GOOGLE}
           customMapStyle={mapStyle}
           initialRegion={{
             latitude: route.params.truck.coords.lat, // Latitude for Green St, Urbana, IL

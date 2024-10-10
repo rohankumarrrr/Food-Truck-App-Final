@@ -118,7 +118,7 @@ export default function MapScreen({ navigation }) {
         <MapView 
             style={styles.map}
             customMapStyle={customMap}
-            provider={PROVIDER_GOOGLE}
+            // provider={PROVIDER_GOOGLE}
             showsUserLocation={true}
             pitchEnabled={true}
             rotateEnabled={true}

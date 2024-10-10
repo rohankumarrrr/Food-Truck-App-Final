@@ -42,6 +42,9 @@ export default function ListScreen({ navigation, route }) {
                     var location = json.results[0].geometry.location;
                     sortedTruckData[i].coords = location;
                     setTruckData((prevData) => [...prevData, sortedTruckData[i]]);
+                    console.log("Geometry" + json.results[0].geometry.location);
+                    console.log(location);
+                    console.log(sortedTruckData[i]); 
                   })
                   .catch(error => console.warn(error));
                 }               
@@ -90,8 +93,9 @@ export default function ListScreen({ navigation, route }) {
         {truckToImageMap.get(item.name) && <Image source={truckToImageMap.get(item.name)} style={styles.image} />}
         <View style={styles.itemContent}>
           <Text style={styles.itemText}>{item.name}</Text>
-          <Text style={styles.locationText}>{item.location}</Text>
-          <Text style={styles.timeText}>{getTime(item.startTime)} to {getTime(item.endTime)}</Text>
+          <Text style={styles.locationText}>{parseLocation(item.location)}</Text>
+          {/* <Text style={styles.timeText}>{getTime(item.startTime)} to {getTime(item.endTime)}</Text> */}
+          <Text style={styles.timeText}>{parseMultipleDays(item.startTime, item.endTime)}</Text>
         </View>
         <Ionicons name="arrow-forward" size={20} color="white" />
       </TouchableOpacity>
@@ -129,6 +133,31 @@ export default function ListScreen({ navigation, route }) {
     }
     setSortOption(sortOptionSelected);
   };
+
+  function parseLocation(location) {
+    const locationArray = location.split(", ");
+    return locationArray[0] + ", " + locationArray[1];
+  }
+
+  function parseMultipleDays(startDate, endDate) {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    
+    if (start.toDateString() === end.toDateString()) {
+      return `${start.toDateString()}, ${formatTime(start)} to ${formatTime(end)}`;
+    } else {
+      return `${start.toDateString()} to ${end.toDateString()}`;
+    }
+  }
+  
+  function formatTime(date) {
+    const hours = date.getHours();
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    
+    const period = hours >= 12 ? 'PM' : 'AM';
+    const adjustedHours = hours % 12 || 12; 
+    return `${adjustedHours}:${minutes} ${period}`;
+  }
 
   const [search, setSearch] = React.useState("");
   const [loaded] = useFonts({
